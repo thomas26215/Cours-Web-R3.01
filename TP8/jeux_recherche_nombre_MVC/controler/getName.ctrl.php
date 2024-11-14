@@ -1,0 +1,25 @@
+<?php
+require_once('framework/view.fw.php');
+
+//////////////////////////////////////////////////////////////////////////////
+// PARTIE RECUPERATION DES DONNEES
+//////////////////////////////////////////////////////////////////////////////
+
+// Récupération des informations de la query string
+$nom = $_GET['nom'] ?? '';
+
+//////////////////////////////////////////////////////////////////////////////
+// PARTIE SELECTION DE LA VUE
+//////////////////////////////////////////////////////////////////////////////
+
+// Création de la vue
+$view = new View();
+
+// Si le nom est vide on retourne à la page de lecture du nom
+if ($nom == '') {
+  $view->display('getName');
+} else {
+  // On démarre le jeu avec le nom d'un joueur
+  $view->assign('nom', $nom);
+  $view->display('startGame');
+}
